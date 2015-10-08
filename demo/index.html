@@ -1,0 +1,66 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>wid-card-apt-issues Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../wid-card-apt-issues.html">
+    <style type="text/css">
+      html, body {
+        height: 50%;
+      }
+    </style>
+  </head>
+  <body unresolved>
+
+<!--     <p>An example of <code>&lt;wid-card-apt-issues&gt;</code>:</p>
+ -->  
+    <template is="dom-bind" id="app">
+
+      <wid-card-apt-issues
+        subscriptions="[[subscriptions]]"
+        importance="2">
+      </wid-card-apt-issues>
+
+    </template>
+
+    <script>
+      
+      // var app = Polymer.dom(document).querySelector('#app');
+      // app.subscriptions = [
+      //   {
+      //     'key': 'backup',
+      //     'type': 'realtime',
+      //     'value': 'la.wid.chan.cloud.prod.database.archer.backup'
+      //   },
+      //   {
+      //     'key': 'status',
+      //     'type': 'realtime',
+      //     'value': 'la.wid.chan.cloud.prod.database.archer.status'
+      //   },
+      //   {
+      //     'key': 'user',
+      //     'type': 'realtime',
+      //     'value': 'la.wid.chan.cloud.prod.database.archer.user'
+      //   },
+      //   {
+      //     'key': 'datetime',
+      //     'type': 'realtime',
+      //     'value': 'la.wid.chan.cloud.prod.database.archer.datetime'
+      //   }
+      // ];
+
+    </script> 
+
+  </body>
+</html>

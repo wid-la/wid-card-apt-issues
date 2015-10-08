@@ -1,0 +1,186 @@
+<html><head><link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-progress/paper-progress.html">
+<link rel="import" href="../paper-styles/paper-styles-classes.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<link rel="import" href="../wid-card-standard-behavior/wid-card-standard-behavior.html">
+<link rel="import" href="../wid-card-weight-behavior/wid-card-weight-behavior.html">
+<link rel="import" href="../wid-versatile-websocket/wid-versatile-websocket.html">
+<link rel="import" href="../wid-card-subscriptions-behavior/wid-card-subscriptions-behavior.html">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <wid-card-apt-issues></wid-card-apt-issues>
+
+@group Seed Elements
+@element wid-card-trailer-availability
+@demo demo/index.html
+@hero hero.svg
+-->
+</head><body><dom-module id="wid-card-apt-issues">
+
+  <template>
+    <style>
+
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 100%;
+      }
+
+      paper-material {
+        overflow-y: auto;
+        height: 100%;
+        font-family: roboto-light;
+        color:#494949;
+        font-size: 3vw;
+        background: white;
+      }
+
+      #header-container{
+        color:white;
+        font-size: 2vw;
+      }
+
+      .grey-conntainer{
+        background: #EAEAEA;
+      }
+
+      .grey-light-conntainer{
+        background: #F4F4F4;
+      }
+
+      .scale-icon{
+        --iron-icon-height: 60%;
+        --iron-icon-width: 60%;
+      }
+
+      .phone-icon{
+        background-image : url('/images/cards/phone.svg');
+        background-repeat:no-repeat; 
+        background-position: 3px 3px;
+        background-size: 18%;
+        width: 100%;
+      }
+
+      .clock-icon{
+        background-image : url('/images/cards/clock.svg');
+        background-repeat:no-repeat; 
+        background-position: 3px 3px;
+        background-size: 18%;
+        width: 100%;
+      }
+
+      .percentage{
+        font-family: roboto;
+        font-size: 2.5vw ;
+      }
+
+
+
+
+    </style>
+    <div id="websockets">
+
+      <!-- This is a requirement of `wid-card-subscriptions-behavior` -->
+      <!-- one websocket element for each subscribed channel -->
+      <template is="dom-repeat" items="[[websockets]]" as="ws">
+        <wid-versatile-websocket url="[[ws.url]]" token="[[ws.token]]" subscription="[[ws.subscription]]" on-data="_onData">
+        </wid-versatile-websocket>
+      </template>
+    </div>
+
+
+    <paper-material class="layout vertical flex" elevation="3">
+      <div id="header-container" style$="[[_getBackgroundColor(bgcolor)]]" class="layout horizontal flex center-center">
+        <div class="flex layout vertical center-center">
+          <iron-icon class="scale-icon flex" src="[[_getIconImage(icon)]]"></iron-icon>
+        </div>
+        <div class="flex layout vertical center-center">
+          <span>[[name]]</span>
+        </div>
+      </div>
+
+      <div id="sched-container" class="layout horizontal flex">
+        <div class="flex layout vertical center-center">
+          <div class="layout horizontal flex center-center">
+            <!-- icon de sched -->
+             <iron-icon class="scale-icon flex" src="/images/cards/sched.svg"></iron-icon>
+          </div>
+          <div id="schedPercentage" class="percentage layout horizontal flex center-center">
+            <!-- percentage -->
+            <span>[[_getSchedPercentage(schedCurrentTotal,schedCurrentReschedule,schedPreviousTotal,schedPreviousReschedule)]]</span>
+          </div>
+        </div>
+        <div class="grey-conntainer flex layout vertical center-center">
+          <div class="phone-icon layout horizontal flex center-center">
+            <!-- total-->
+            <span>[[schedCurrentTotal]]</span>
+          </div>
+          <div class="clock-icon layout horizontal flex center-center">
+            <!-- resched-->
+            <span>[[schedCurrentTotal]]</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="cust-container" class="layout horizontal flex">
+        <div class="flex layout vertical center-center">
+          <div class="layout horizontal flex center-center">
+            <!-- icon de cust -->
+            <iron-icon class="scale-icon flex" src="/images/cards/cust.svg"></iron-icon>
+          </div>
+          <div id="custPercentage" class="percentage layout horizontal flex center-center">
+            <!-- percentage -->
+            <span>[[_getCustPercentage(custCurrentTotal,custCurrentReschedule,custPreviousTotal,custPreviousReschedule)]]</span>
+          </div>
+        </div>
+        <div class="grey-light-conntainer flex layout vertical center-center">
+          <div class="phone-icon layout horizontal flex center-center">
+            <!-- total-->
+            <span>[[custCurrentTotal]]</span>
+          </div>
+          <div class="clock-icon layout horizontal flex center-center">
+            <!-- resched-->
+            <span>[[custCurrentReschedule]]</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="csr-container" class="layout horizontal flex">
+        <div class="flex layout vertical center-center">
+          <div class="layout horizontal flex center-center">
+            <!-- icon de csr -->
+            <iron-icon class="scale-icon flex" src="/images/cards/csr.svg"></iron-icon>
+          </div>
+          <div id="csrPercentage" class="percentage layout horizontal flex center-center">
+            <!-- percentage -->
+            <span>[[_getCsrPercentage(csrCurrentTotal,csrCurrentReschedule,csrPreviousTotal,csrPreviousReschedule)]]</span>
+          </div>
+        </div>
+        <div class="grey-conntainer flex layout vertical center-center">
+          <div class="phone-icon layout horizontal flex center-center">
+            <!-- total-->
+            <span>[[csrCurrentTotal]]</span>
+          </div>
+          <div class="clock-icon layout horizontal flex center-center">
+            <!-- resched-->
+            <span>[[csrCurrentReschedule]]</span>
+          </div>
+        </div>
+      </div>
+
+
+    </paper-material>
+
+  </template>
+
+</dom-module>
+
+<script src="wid-card-apt-issues.js"></script></body></html>
