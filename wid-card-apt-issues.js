@@ -170,9 +170,9 @@
       var ratio = (100 * (currentPercentage - oldPercentage) / oldPercentage).toFixed(0);
 
       if (ratio > 0) {
-        this.$.schedPercentage.setAttribute('style', 'color:#558B2F');
-      } else {
         this.$.schedPercentage.setAttribute('style', 'color:#F44336');
+      } else {
+        this.$.schedPercentage.setAttribute('style', 'color:#8BC34A');
       }
       return ratio + '%';
     }
