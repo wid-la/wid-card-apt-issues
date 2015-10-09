@@ -144,9 +144,9 @@
       var ratio = (100 * (currentPercentage - oldPercentage) / oldPercentage).toFixed(0);
 
       if (ratio > 0) {
-        this.$.csrPercentage.setAttribute('style', 'color:#558B2F');
-      } else {
         this.$.csrPercentage.setAttribute('style', 'color:#F44336');
+      } else {
+        this.$.csrPercentage.setAttribute('style', 'color:#8BC34A');
       }
       return ratio + '%';
     },
@@ -157,9 +157,9 @@
       var ratio = (100 * (currentPercentage - oldPercentage) / oldPercentage).toFixed(0);
 
       if (ratio > 0) {
-        this.$.custPercentage.setAttribute('style', 'color:#558B2F');
-      } else {
         this.$.custPercentage.setAttribute('style', 'color:#F44336');
+      } else {
+        this.$.custPercentage.setAttribute('style', 'color:#8BC34A');
       }
       return ratio + '%';
     },
