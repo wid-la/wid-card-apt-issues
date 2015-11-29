@@ -8,6 +8,7 @@
 
 <link rel="import" href="../wid-card-standard-behavior/wid-card-standard-behavior.html">
 <link rel="import" href="../wid-card-weight-behavior/wid-card-weight-behavior.html">
+<link rel="import" href="../wid-card-theme-behavior/wid-card-theme-behavior.html">
 <link rel="import" href="../wid-versatile-websocket/wid-versatile-websocket.html">
 <link rel="import" href="../wid-card-subscriptions-behavior/wid-card-subscriptions-behavior.html">
 
@@ -41,6 +42,7 @@ Example:
         color:#494949;
         font-size: 3vw;
         background: white;
+        overflow: visible;
       }
 
       #header-container{
@@ -97,7 +99,7 @@ Example:
     </div>
 
 
-    <paper-material class="layout vertical flex" elevation="3">
+    <paper-material id="mainContent" class="layout vertical flex" elevation="3">
       <div id="header-container" style$="[[_getBackgroundColor(bgcolor)]]" class="layout horizontal flex center-center">
         <div class="flex layout vertical center-center">
           <iron-icon class="scale-icon flex" src="[[_getIconImage(icon)]]"></iron-icon>
@@ -190,7 +192,12 @@ Example:
 
     is: 'wid-card-apt-issues',
 
-    behaviors: [Polymer.WidCardStandardBehavior, Polymer.WidCardWeightBehavior, Polymer.WidCardSubscriptionsBehavior],
+    behaviors: [
+      Polymer.WidCardStandardBehavior, 
+      Polymer.WidCardWeightBehavior, 
+      Polymer.WidCardSubscriptionsBehavior, 
+      Polymer.WidCardThemeBehavior
+    ],
 
     properties: {
       /**
